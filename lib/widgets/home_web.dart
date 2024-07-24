@@ -1,45 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:velea_v3/mobile/menu/menu_mobile.dart';
 
-class HomeContentMobile extends StatefulWidget {
+import 'mobiles/list_radio_channels.dart';
 
-  const HomeContentMobile({
-    super.key,
-  });
+
+
+
+class Home extends StatefulWidget {
+  const Home({super.key});
+
 
   @override
-  State<StatefulWidget> createState() => _HomeContentMobileState();
-
+  State<Home> createState() => _VeleaHomeState();
+  
 }
 
-class _HomeContentMobileState extends State<HomeContentMobile> {
+class _VeleaHomeState extends State<Home> {
 
-  bool _isOverlayVisible = false;
+  late ValueNotifier<bool> _isOnline;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _isOnline = ValueNotifier(true);
+
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: _drawer(),
-      body: SafeArea(
-        child: Column(
-          children: <Widget> [
-            //Expanded(child: MenuMobile()),
-            Expanded(
-              child: Container(
-                width: double.infinity,
-                height: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Text('Mobile screen size'),
-              ),             
-            ),
-          ],
-        ),
+      appBar: AppBar(
+        title: Text('Velea App'),
       ),
-    );
-  }
 
-  Drawer _drawer() {
-    return Drawer(
+      drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget> [
@@ -54,6 +48,18 @@ class _HomeContentMobileState extends State<HomeContentMobile> {
                   fontSize: 24,
                 ),
               ),
+            ),
+            ListTile(
+              leading: Icon(Icons.radio),
+              title: Text('Radio Channels'),
+              onTap: () {
+                Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ListRadioChannels(),
+                ),
+              );
+              },
             ),
             ListTile(
               leading: Icon(Icons.message),
@@ -84,7 +90,16 @@ class _HomeContentMobileState extends State<HomeContentMobile> {
             )
           ],
         ),
-      );
+      ),
+      
+      body: SizedBox(
+        child: Text('dddddddddddd'),
+      ),
+
+
+    );
+
+    
   }
 
 }
