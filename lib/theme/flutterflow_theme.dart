@@ -46,6 +46,20 @@ class FlutterFlowTheme {
     fontWeight: FontWeight.normal,
   );
 
+  TextStyle get titleMedium => TextStyle(
+    fontFamily: 'Roboto',
+    color: primaryColor,
+    fontSize: 14,
+    fontWeight: FontWeight.normal,
+  );
+
+  TextStyle get subtitleSmall => TextStyle(
+    fontFamily: 'Roboto',
+    color: primaryColor,
+    fontSize: 9,
+    fontWeight: FontWeight.normal,
+  );
+
   TextStyle get title1 => TextStyle(
     fontFamily: 'Roboto',
     color: primaryColor,
