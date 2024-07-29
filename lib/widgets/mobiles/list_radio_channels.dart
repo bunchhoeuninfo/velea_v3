@@ -1,4 +1,10 @@
+import 'dart:ffi';
+
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:velea_v3/utils/firebase_options.dart';
 import 'package:velea_v3/widgets/mobiles/listen_radio_channel_mb.dart';
 
 import '../../models/radio_channel.dart';
@@ -21,6 +27,11 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  late DatabaseReference _databaseReference;
+  bool isInit = false;
+  final List<RadioChannel> _radioChannels = [];
+
+  /*
   List<RadioChannel> radioChannels = [
     const RadioChannel(chnCountryISO: 'KH', chnCode: 'ABCFM001', chnDescr: '1 - វិទ្យុ អេប៊ីស៊ី ភ្នំពេញ FM 107.5 is an internet radio station from Phnom Penh, Cambodia providing unlimited online music.', 
     chnFullName: '1-វិទ្យុ អេប៊ីស៊ី ភ្នំពេញ FM 107.5', chnImgUrl: 'https://firebasestorage.googleapis.com/v0/b/auth-f07aa.appspot.com/o/abc.jpg?alt=media&token=b0d6120d-9256-4a95-b7de-db9a62a7c743',
@@ -28,10 +39,12 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
      const RadioChannel(chnCountryISO: 'EN', chnCode: 'khfmlove001', chnDescr: 'Love FM 97.5 is an internet radio station from Phnom Penh, Cambodia providing unlimited online music.', 
     chnFullName: '2-LOVE FM 97.5', chnImgUrl: 'https://firebasestorage.googleapis.com/v0/b/auth-f07aa.appspot.com/o/lovefm.png?alt=media&token=4e72052c-9536-4a4a-bdd8-ba59b89f93fc',
      chnIsActive: 'true', chnShortName: 'Love FM short name', chnTitle: 'Love FM 97.5 Phnom Penh, Cambodia', chnUrl: 'http://radio99.servradio.com:9298'),
-  ];
+  ];*/
 
   @override
   void initState() {
+    initRadioChannel();
+
     super.initState();
     //_model = createModel(context, () => RadioChannelsListModel());
   }
@@ -41,6 +54,47 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
     //_model.dispose();
 
     super.dispose();
+  }
+
+  Future<void> initRadioChannel() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.firebaseOptions,
+    );
+
+    try {
+      _databaseReference = FirebaseDatabase.instance.ref("/KHFMRadio/ChannelsInfo");
+      final database = FirebaseDatabase.instance;
+      database.setLoggingEnabled(false);
+      final chnSnapshot = await _databaseReference.get();
+
+      _databaseReference.onValue.listen((event) {
+        if (kDebugMode) print("In method content::${event.snapshot.child('/').value.toString()}");
+
+        for (var e in event.snapshot.children) {
+          if (kDebugMode) print('reading node in init ${e.child('chnFullname').value}');  
+          _radioChannels.add(RadioChannel(chnCountryISO: e.child('chnCntryISO').value.toString(), 
+                      chnCode: e.child('chnCode').value.toString(), 
+                      chnDescr: e.child('chnDescr').value.toString(), 
+                      chnFullName: e.child('chnFullname').value.toString(), 
+                      chnImgUrl: e.child('chnImgUrl').value.toString(), 
+                      chnIsActive: e.child('chnIsActive').toString(), 
+                      chnShortName: e.child('chnShortName').value.toString(), 
+                      chnTitle: e.child('chnTitle').value.toString(), 
+                      chnUrl: e.child('chnUrl').value.toString(),
+                    )
+          );
+        }
+        
+      });
+
+      setState(() {
+        isInit = true;
+      });
+
+    } catch (e) {
+      if (kDebugMode)  print("Exception here ......::: $e");
+    }
   }
 
   @override
@@ -65,7 +119,8 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
           centerTitle: false,
           elevation: 0,
         ),
-        body: SingleChildScrollView(
+        body: isInit? Center(child: CircularProgressIndicator(),)
+            : SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -91,7 +146,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                   primary: false,
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical, 
-                  children: radioChannels.map((e) {
+                  children: _radioChannels.map((e) {
                     return _paddingItem(e);
                   }).toList(),
                 ),
