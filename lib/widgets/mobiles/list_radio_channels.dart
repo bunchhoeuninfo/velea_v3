@@ -150,7 +150,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
   Padding _paddingItem(RadioChannel radioChannel) {
     String fname = radioChannel.chnFullName;
     return  Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
+      padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
       child: GestureDetector(
           onTap: () {
             debugPrint('_paddingItem->channels-> $fname');
@@ -216,7 +216,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                               ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0, 4, 8, 0),
                           child: AutoSizeText(
                             radioChannel.chnDescr,
@@ -225,6 +225,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                                 .subtitleSmall
                                 .copyWith(
                                   fontFamily: 'Readex Pro',
+                                  color: Colors.black,
                                   letterSpacing: 0,
                                 ),
                           ),
@@ -257,6 +258,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                             .labelMedium
                             .copyWith(
                               fontFamily: 'Readex Pro',
+                              color: Colors.black,
                               letterSpacing: 0,
                             ),
                       ),

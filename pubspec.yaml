@@ -30,7 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-    
+  
+  youtube_player_flutter: ^8.0.0
   audio_video_progress_bar: ^2.0.3
   auto_size_text: ^3.0.0
   #cached_network_image: 3.3.1

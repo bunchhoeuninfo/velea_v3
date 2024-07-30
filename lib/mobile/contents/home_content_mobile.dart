@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:velea_v3/mobile/menu/menu_mobile.dart';
 
 class HomeContentMobile extends StatefulWidget {
 
