@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:velea_v3/constants/app_constant.dart';
+import 'package:velea_v3/theme/velea_theme.dart';
+import 'package:velea_v3/widgets/mobiles/user_profile_setting_mb.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import 'list_radio_channels.dart';
@@ -17,6 +20,8 @@ class HomeMobile extends StatefulWidget {
 }
 
 class _VeleaHomeState extends State<HomeMobile> {
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   late ValueNotifier<bool> _isOnline;
 
@@ -38,23 +43,27 @@ class _VeleaHomeState extends State<HomeMobile> {
 
   }
 
-  void onRadioPressed() {
-    Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ListRadioChannels(),
-              )
-            );
-  }
+  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
+      backgroundColor: VeleaTheme.of(context).primaryBackground,
       appBar: AppBar(
-        title: Text('Velea App'),
+        backgroundColor: VeleaTheme.of(context).appBarBackground,
+        title: Text(
+          'កម្មវិធីស្តាប់វិទ្យុលើបណ្តាញអីនធឺណិត',
+          style: VeleaTheme.of(context).displayAppBar.copyWith(
+            letterSpacing: 0,
+            color: VeleaTheme.of(context).appBarTextColor,
+          ),
+          ),
+        centerTitle: true,
+        elevation: 0,
       ),
 
-      drawer: Drawer(
+      /*drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget> [
@@ -111,7 +120,7 @@ class _VeleaHomeState extends State<HomeMobile> {
             )
           ],
         ),
-      ),
+      ),*/
       
       body: SingleChildScrollView(
         child: Column(
@@ -143,9 +152,9 @@ class _VeleaHomeState extends State<HomeMobile> {
                 crossAxisSpacing: 10.0,
                 mainAxisSpacing: 10.0,
                 children: [
-                  buildGridButton('Radio', Icons.radio, onRadioPressed),
-                  buildGridButton('Gallery', Icons.tv, () {}),
-                  buildGridButton('Settings', Icons.settings, () {}),
+                  buildGridButton('Radio', Icons.radio, onKHPressed),
+                  buildGridButton('Gallery', Icons.radio, onENPressed),
+                  buildGridButton('Settings', Icons.settings, onSettingPressed),
                   buildGridButton('Notifications', Icons.notifications, () {}),
                 ],
               ),
@@ -156,11 +165,30 @@ class _VeleaHomeState extends State<HomeMobile> {
     );
   }
 
-  void onTVPressed() {
+  void onKHPressed() {
+    
     Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const ListRadioChannels(),
+                builder: (context) => const ListRadioChannels(chnCountryISO: AppConstant.KH_RADIO,),
+              )
+            );
+  }
+
+  void onENPressed() {
+    Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ListRadioChannels(chnCountryISO: AppConstant.EN_RADIO,),
+              )
+            );
+  }
+
+  void onSettingPressed() {
+    Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const UserProfileSettingMB(),
               )
             );
   }

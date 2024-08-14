@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../models/radio_channel.dart';
-import '../../theme/flutterflow_theme.dart';
+import '../../theme/velea_theme.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
 
@@ -53,13 +53,13 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
           : FocusScope.of(context).unfocus(),*/
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: VeleaTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          backgroundColor: VeleaTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           title: Text(
             'Radio Channels',
-            style: FlutterFlowTheme.of(context).displaySmall.copyWith(
+            style: VeleaTheme.of(context).displaySmall.copyWith(
                   fontFamily: 'Outfit',
                   letterSpacing: 0,
                 ),
@@ -100,7 +100,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                   children: [
                     Text(
                       'Our channels is below',
-                      style: FlutterFlowTheme.of(context).labelMedium.copyWith(
+                      style: VeleaTheme.of(context).labelMedium.copyWith(
                             fontFamily: 'Readex Pro',
                             letterSpacing: 0,
                           ),
@@ -122,7 +122,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
+                              VeleaTheme.of(context).secondaryBackground,
                           boxShadow: [
                             BoxShadow(
                               blurRadius: 3,
@@ -165,7 +165,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                                     children: [
                                       Text(
                                         'Custom Title',
-                                        style: FlutterFlowTheme.of(context)
+                                        style: VeleaTheme.of(context)
                                             .headlineSmall
                                             .copyWith(
                                               fontFamily: 'Outfit',
@@ -178,7 +178,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                                         child: AutoSizeText(
                                           'Custom Subtext',
                                           textAlign: TextAlign.start,
-                                          style: FlutterFlowTheme.of(context)
+                                          style: VeleaTheme.of(context)
                                               .labelMedium
                                               .copyWith(
                                                 fontFamily: 'Readex Pro',
@@ -211,7 +211,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                                     child: Text(
                                       'EN',
                                       textAlign: TextAlign.end,
-                                      style: FlutterFlowTheme.of(context)
+                                      style: VeleaTheme.of(context)
                                           .bodyMedium
                                           .copyWith(
                                             fontFamily: 'Readex Pro',
@@ -232,7 +232,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
+                              VeleaTheme.of(context).secondaryBackground,
                           boxShadow: [
                             BoxShadow(
                               blurRadius: 3,
@@ -275,7 +275,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                                     children: [
                                       Text(
                                         'Title',
-                                        style: FlutterFlowTheme.of(context)
+                                        style: VeleaTheme.of(context)
                                             .headlineSmall
                                             .copyWith(
                                               fontFamily: 'Outfit',
@@ -288,7 +288,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                                         child: AutoSizeText(
                                           'Subtext',
                                           textAlign: TextAlign.start,
-                                          style: FlutterFlowTheme.of(context)
+                                          style: VeleaTheme.of(context)
                                               .labelMedium
                                               .copyWith(
                                                 fontFamily: 'Readex Pro',
@@ -321,7 +321,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                                     child: Text(
                                       '\$11.00',
                                       textAlign: TextAlign.end,
-                                      style: FlutterFlowTheme.of(context)
+                                      style: VeleaTheme.of(context)
                                           .bodyMedium
                                           .copyWith(
                                             fontFamily: 'Readex Pro',
@@ -342,7 +342,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
+                              VeleaTheme.of(context).secondaryBackground,
                           boxShadow: [
                             BoxShadow(
                               blurRadius: 3,
@@ -385,7 +385,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                                     children: [
                                       Text(
                                         'Title',
-                                        style: FlutterFlowTheme.of(context)
+                                        style: VeleaTheme.of(context)
                                             .headlineSmall
                                             .copyWith(
                                               fontFamily: 'Outfit',
@@ -398,7 +398,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                                         child: AutoSizeText(
                                           'Subtext',
                                           textAlign: TextAlign.start,
-                                          style: FlutterFlowTheme.of(context)
+                                          style: VeleaTheme.of(context)
                                               .labelMedium
                                               .copyWith(
                                                 fontFamily: 'Readex Pro',
@@ -431,7 +431,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                                     child: Text(
                                       '\$11.00',
                                       textAlign: TextAlign.end,
-                                      style: FlutterFlowTheme.of(context)
+                                      style: VeleaTheme.of(context)
                                           .bodyMedium
                                           .copyWith(
                                             fontFamily: 'Readex Pro',
@@ -452,7 +452,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
+                              VeleaTheme.of(context).secondaryBackground,
                           boxShadow: [
                             BoxShadow(
                               blurRadius: 3,
@@ -495,7 +495,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                                     children: [
                                       Text(
                                         'Title',
-                                        style: FlutterFlowTheme.of(context)
+                                        style: VeleaTheme.of(context)
                                             .headlineSmall
                                             .copyWith(
                                               fontFamily: 'Outfit',
@@ -508,7 +508,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                                         child: AutoSizeText(
                                           'Subtext',
                                           textAlign: TextAlign.start,
-                                          style: FlutterFlowTheme.of(context)
+                                          style: VeleaTheme.of(context)
                                               .labelMedium
                                               .copyWith(
                                                 fontFamily: 'Readex Pro',
@@ -541,7 +541,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                                     child: Text(
                                       '\$11.00',
                                       textAlign: TextAlign.end,
-                                      style: FlutterFlowTheme.of(context)
+                                      style: VeleaTheme.of(context)
                                           .bodyMedium
                                           .copyWith(
                                             fontFamily: 'Readex Pro',
@@ -562,7 +562,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
+                              VeleaTheme.of(context).secondaryBackground,
                           boxShadow: [
                             BoxShadow(
                               blurRadius: 3,
@@ -605,7 +605,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                                     children: [
                                       Text(
                                         'Title',
-                                        style: FlutterFlowTheme.of(context)
+                                        style: VeleaTheme.of(context)
                                             .headlineSmall
                                             .copyWith(
                                               fontFamily: 'Outfit',
@@ -618,7 +618,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                                         child: AutoSizeText(
                                           'Subtext',
                                           textAlign: TextAlign.start,
-                                          style: FlutterFlowTheme.of(context)
+                                          style: VeleaTheme.of(context)
                                               .labelMedium
                                               .copyWith(
                                                 fontFamily: 'Readex Pro',
@@ -651,7 +651,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                                     child: Text(
                                       '\$11.00',
                                       textAlign: TextAlign.end,
-                                      style: FlutterFlowTheme.of(context)
+                                      style: VeleaTheme.of(context)
                                           .bodyMedium
                                           .copyWith(
                                             fontFamily: 'Readex Pro',
@@ -672,7 +672,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
+                              VeleaTheme.of(context).secondaryBackground,
                           boxShadow: [
                             BoxShadow(
                               blurRadius: 3,
@@ -715,7 +715,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                                     children: [
                                       Text(
                                         'Title',
-                                        style: FlutterFlowTheme.of(context)
+                                        style: VeleaTheme.of(context)
                                             .headlineSmall
                                             .copyWith(
                                               fontFamily: 'Outfit',
@@ -728,7 +728,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                                         child: AutoSizeText(
                                           'Subtext',
                                           textAlign: TextAlign.start,
-                                          style: FlutterFlowTheme.of(context)
+                                          style: VeleaTheme.of(context)
                                               .labelMedium
                                               .copyWith(
                                                 fontFamily: 'Readex Pro',
@@ -761,7 +761,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                                     child: Text(
                                       '\$11.00',
                                       textAlign: TextAlign.end,
-                                      style: FlutterFlowTheme.of(context)
+                                      style: VeleaTheme.of(context)
                                           .bodyMedium
                                           .copyWith(
                                             fontFamily: 'Readex Pro',
@@ -782,7 +782,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
+                              VeleaTheme.of(context).secondaryBackground,
                           boxShadow: [
                             BoxShadow(
                               blurRadius: 3,
@@ -825,7 +825,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                                     children: [
                                       Text(
                                         'Title',
-                                        style: FlutterFlowTheme.of(context)
+                                        style: VeleaTheme.of(context)
                                             .headlineSmall
                                             .copyWith(
                                               fontFamily: 'Outfit',
@@ -838,7 +838,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                                         child: AutoSizeText(
                                           'Subtext',
                                           textAlign: TextAlign.start,
-                                          style: FlutterFlowTheme.of(context)
+                                          style: VeleaTheme.of(context)
                                               .labelMedium
                                               .copyWith(
                                                 fontFamily: 'Readex Pro',
@@ -871,7 +871,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                                     child: Text(
                                       '\$11.00',
                                       textAlign: TextAlign.end,
-                                      style: FlutterFlowTheme.of(context)
+                                      style: VeleaTheme.of(context)
                                           .bodyMedium
                                           .copyWith(
                                             fontFamily: 'Readex Pro',
@@ -892,7 +892,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
+                              VeleaTheme.of(context).secondaryBackground,
                           boxShadow: [
                             BoxShadow(
                               blurRadius: 3,
@@ -935,7 +935,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                                     children: [
                                       Text(
                                         'Title',
-                                        style: FlutterFlowTheme.of(context)
+                                        style: VeleaTheme.of(context)
                                             .headlineSmall
                                             .copyWith(
                                               fontFamily: 'Outfit',
@@ -948,7 +948,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                                         child: AutoSizeText(
                                           'Subtext',
                                           textAlign: TextAlign.start,
-                                          style: FlutterFlowTheme.of(context)
+                                          style: VeleaTheme.of(context)
                                               .labelMedium
                                               .copyWith(
                                                 fontFamily: 'Readex Pro',
@@ -981,7 +981,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                                     child: Text(
                                       '\$11.00',
                                       textAlign: TextAlign.end,
-                                      style: FlutterFlowTheme.of(context)
+                                      style: VeleaTheme.of(context)
                                           .bodyMedium
                                           .copyWith(
                                             fontFamily: 'Readex Pro',

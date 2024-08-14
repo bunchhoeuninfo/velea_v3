@@ -1,21 +1,25 @@
-import 'dart:ffi';
+
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:velea_v3/constants/app_constant.dart';
+import 'package:velea_v3/theme/velea_theme.dart';
 import 'package:velea_v3/utils/firebase_options.dart';
 import 'package:velea_v3/widgets/mobiles/listen_radio_channel_mb.dart';
 
 import '../../models/radio_channel.dart';
-import '../../theme/flutterflow_theme.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
 
 class ListRadioChannels extends StatefulWidget {
   const ListRadioChannels({
-    super.key
+    super.key,
+    required this.chnCountryISO,
   });
+
+  final String chnCountryISO;
   
   @override
   State<ListRadioChannels> createState() => _ListRadioChannelsState();
@@ -25,19 +29,28 @@ class ListRadioChannels extends StatefulWidget {
 class _ListRadioChannelsState extends State<ListRadioChannels> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  late String initRadio = AppConstant.KH_RADIO;
 
   late DatabaseReference _databaseReference;
-  bool isInit = false;
+  bool _notInit = true;
   final List<RadioChannel> _radioChannels = [];
 
   @override
   void initState() {
+    
+    if (initRadio != widget.chnCountryISO) {
+      setState(() {
+        initRadio = widget.chnCountryISO;        
+      });
+    }
+    
     initRadioChannel();
 
-    setState(() {
-      
-    });
-
+    if (_radioChannels.isNotEmpty) {
+      setState(() {
+        _notInit = false;
+      });
+    }
     super.initState();
   }
 
@@ -64,8 +77,9 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
         setState(() {
           for (var e in event.snapshot.children) {
           if (kDebugMode) print('reading node in init ${e.child('chnFullname').value}');  
-          
-            _radioChannels.add(RadioChannel(chnCountryISO: e.child('chnCntryISO').value.toString(), 
+            if (initRadio == AppConstant.EN_RADIO && e.child('chnCntryISO').value.toString() == AppConstant.EN_RADIO) {
+              if (kDebugMode) print('inside EN_RADIO condition check'); 
+              _radioChannels.add(RadioChannel(chnCountryISO: e.child('chnCntryISO').value.toString(), 
                         chnCode: e.child('chnCode').value.toString(), 
                         chnDescr: e.child('chnDescr').value.toString(), 
                         chnFullName: e.child('chnFullname').value.toString(), 
@@ -75,9 +89,36 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                         chnTitle: e.child('chnTitle').value.toString(), 
                         chnUrl: e.child('chnUrl').value.toString(),
                       )
-            );
-          } 
-          if (_radioChannels.isNotEmpty) isInit = true;
+              );
+            }
+
+            if (initRadio == AppConstant.KH_RADIO && e.child('chnCntryISO').value.toString() == AppConstant.KH_RADIO) {
+              if (kDebugMode) print('inside KH_RADIO condition check'); 
+              _radioChannels.add(RadioChannel(chnCountryISO: e.child('chnCntryISO').value.toString(), 
+                        chnCode: e.child('chnCode').value.toString(), 
+                        chnDescr: e.child('chnDescr').value.toString(), 
+                        chnFullName: e.child('chnFullname').value.toString(), 
+                        chnImgUrl: e.child('chnImgUrl').value.toString(), 
+                        chnIsActive: e.child('chnIsActive').toString(), 
+                        chnShortName: e.child('chnShortName').value.toString(), 
+                        chnTitle: e.child('chnTitle').value.toString(), 
+                        chnUrl: e.child('chnUrl').value.toString(),
+                      )
+              );
+            }
+
+            /*_radioChannels.add(RadioChannel(chnCountryISO: e.child('chnCntryISO').value.toString(), 
+                        chnCode: e.child('chnCode').value.toString(), 
+                        chnDescr: e.child('chnDescr').value.toString(), 
+                        chnFullName: e.child('chnFullname').value.toString(), 
+                        chnImgUrl: e.child('chnImgUrl').value.toString(), 
+                        chnIsActive: e.child('chnIsActive').toString(), 
+                        chnShortName: e.child('chnShortName').value.toString(), 
+                        chnTitle: e.child('chnTitle').value.toString(), 
+                        chnUrl: e.child('chnUrl').value.toString(),
+                      )
+            );*/
+          }           
         });            
       });      
 
@@ -88,29 +129,31 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
 
   @override
   Widget build(BuildContext context) {
-
+    
     return GestureDetector(
       onTap: () {
         debugPrint('GestureDetector-> onTap event');
       },
-      child: Scaffold(
+      child : Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: VeleaTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          automaticallyImplyLeading: false,
+          backgroundColor: VeleaTheme.of(context).appBarBackground,
+          //automaticallyImplyLeading: false,
           title: Text(
-            'Radio Channels',
-            style: FlutterFlowTheme.of(context).displaySmall.copyWith(
-                  fontFamily: 'Outfit',
+            'បញ្ជីប៉ុស្តីវិទ្យុផ្សាយក្នុងស្រុក',
+            style: VeleaTheme.of(context).displayAppBar.copyWith(
                   letterSpacing: 0,
+                  color: VeleaTheme.of(context).appBarTextColor,
                 ),
           ),
-          centerTitle: false,
+          centerTitle: true,
           elevation: 0,
         ),
         body : SingleChildScrollView(
-          child: Column(
+          
+          child 
+            : Column(
             mainAxisSize: MainAxisSize.max,
             children: [
               /*Padding(
@@ -129,7 +172,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                 ),
               ),*/
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                 child: ListView(
                   padding: EdgeInsets.zero,
                   primary: false,
@@ -165,7 +208,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
           width: double.infinity,
           decoration: BoxDecoration(
             color:
-                FlutterFlowTheme.of(context).secondaryBackground,
+                VeleaTheme.of(context).secondaryBackground,
             boxShadow: [
               BoxShadow(
                 blurRadius: 3,
@@ -208,7 +251,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                       children: [
                         Text(
                           radioChannel.chnFullName,
-                          style: FlutterFlowTheme.of(context)
+                          style: VeleaTheme.of(context)
                               .labelMedium
                               .copyWith(
                                 fontFamily: 'Outfit',
@@ -221,7 +264,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                           child: AutoSizeText(
                             radioChannel.chnDescr,
                             textAlign: TextAlign.start,
-                            style: FlutterFlowTheme.of(context)
+                            style: VeleaTheme.of(context)
                                 .subtitleSmall
                                 .copyWith(
                                   fontFamily: 'Readex Pro',
@@ -254,7 +297,7 @@ class _ListRadioChannelsState extends State<ListRadioChannels> {
                       child: Text(
                         radioChannel.chnCountryISO,
                         textAlign: TextAlign.end,
-                        style: FlutterFlowTheme.of(context)
+                        style: VeleaTheme.of(context)
                             .labelMedium
                             .copyWith(
                               fontFamily: 'Readex Pro',

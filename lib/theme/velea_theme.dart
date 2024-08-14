@@ -1,12 +1,16 @@
+
+
 import 'package:flutter/material.dart';
 
-class FlutterFlowTheme {
-  static FlutterFlowTheme of(BuildContext context) {
-    return FlutterFlowTheme();
+class VeleaTheme {
+  static VeleaTheme of(BuildContext context) {
+    return VeleaTheme();
   }
 
   Color get primaryBackground => Color(0xFFFFFFFF);
   Color get secondaryBackground => Color(0xFFEEEEEE);
+  Color get appBarBackground => Color.fromARGB(255, 3, 49, 255);
+  Color get appBarTextColor => Color(0xFFEEEEEE);
   Color get primaryColor => Color(0xFF6200EA);
   Color get secondaryColor => Color(0xFF03DAC6);
 
@@ -15,6 +19,13 @@ class FlutterFlowTheme {
     color: primaryColor,
     fontSize: 32,
     fontWeight: FontWeight.bold,
+  );
+
+  TextStyle get displayAppBar => TextStyle(
+    fontFamily: 'KhmerOS-Regular',
+    color: primaryColor,
+    fontSize: 18,
+    fontWeight: FontWeight.normal,
   );
 
   TextStyle get bodyMedium => TextStyle(

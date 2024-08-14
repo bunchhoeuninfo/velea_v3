@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:velea_v3/models/radio_channel.dart';
 
 class AppConstant {
   AppConstant._();
@@ -14,4 +15,6 @@ class AppConstant {
   static const Color green = Color(0xFF1FC70A);
   static const Color red = Color(0xFFF93A25);
   static const Color gray = Color(0xFFE4E4E5);
+  static const KH_RADIO = "KH";
+  static const EN_RADIO = "EN";
 }
